@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Calculator.Views.PlotView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:oxy="http://oxyplot.org/wpf"
+      xmlns:local="clr-namespace:Calculator.ViewModels">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="3" Margin="5">
+            <oxy:Plot InvalidateFlag="{Binding InvalidateFlag}">
+                <oxy:Plot.Axes>
+                    <oxy:LinearAxis Key="yAxis"
+                                        IsZoomEnabled="False"
+                                        IsPanEnabled="False"
+                                        Position="Left"
+                                        MajorGridlineStyle="LongDash"
+                                        MajorGridlineColor="Gray"
+                                        Title="Y"
+                                        Minimum="-25"
+                                        Maximum="25"
+                                        />
+                    <oxy:LinearAxis Key="xAxis"
+                                        IsZoomEnabled="False"
+                                        IsPanEnabled="False"
+                                        Position="Bottom"
+                                        MajorGridlineStyle="LongDash"
+                                        MajorGridlineColor="Gray"
+                                        Title="X"
+                                        Minimum="-25"
+                                        Maximum="25"/>
+                </oxy:Plot.Axes>
+                <oxy:Plot.Series>
+                    <oxy:LineSeries ItemsSource="{Binding Points}" Color="Red"/>
+                </oxy:Plot.Series>
+            </oxy:Plot>
+        </Grid>
+        <Label x:Name="label" Content="f(x) = " FontSize="20" FontStyle="Oblique" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+        <TextBox x:Name="textBox1" Grid.Column="1" FontSize="20" Grid.Row="1" Text="{Binding Path=Function, Mode=TwoWay}" VerticalContentAlignment="Center" Padding="5" Margin="5"/>
+        <Button Name="ButtonPlot" Command="{Binding PlotButtonPressCommand}" CommandParameter="Plot" ToolTip="Plot" Content="Plot" FontSize="20" Background="#2ecc71" Foreground="White" Grid.Column="2" Grid.Row="1" Margin="5"/>
+    </Grid>
+</UserControl>

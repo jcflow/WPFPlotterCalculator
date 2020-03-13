@@ -1,0 +1,1 @@
+G:\Calculator\Calculator\bin\Release\Calculator.exe.config

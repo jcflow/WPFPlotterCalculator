@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Calculator.Views.CalculatorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:oxy="http://oxyplot.org/wpf"
+    xmlns:local="clr-namespace:Calculator.ViewModels"
+    xmlns:m="clr-namespace:Calculator.Models"
+    xmlns:views="clr-namespace:Calculator.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <UserControl.Resources>
+        <local:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Name="ButtonPoint" Command="{Binding ActionButtonPressCommand}" CommandParameter="{x:Static local:ActionButtonType.POINT}" Margin="5" Grid.Column="2" Grid.Row="7" FontSize="20" FontWeight="Bold">.</Button>
+        <Button Name="Button0" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_0}" Margin="5" Grid.Column="3" Grid.Row="7" FontSize="20" FontWeight="Bold">0</Button>
+        <Button Name="ButtonEqual" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.EQUAL}" Margin="5" Background="Darkgray" Foreground="White" Grid.Column="4" Grid.Row="6" FontSize="20" FontWeight="Bold">=</Button>
+
+        <Button Name="Button1" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_1}" Margin="5" Grid.Column="2" Grid.Row="5" FontSize="20" FontWeight="Bold">1</Button>
+        <Button Name="Button2" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_2}" Margin="5" Grid.Column="3" Grid.Row="5" FontSize="20" FontWeight="Bold">2</Button>
+        <Button Name="Button3" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_3}" Margin="5" Grid.Column="4" Grid.Row="5" FontSize="20" FontWeight="Bold">3</Button>
+
+        <Button Name="Button4" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_4}" Margin="5" Grid.Column="2" Grid.Row="4" FontSize="20" FontWeight="Bold">4</Button>
+        <Button Name="Button5" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_5}" Margin="5" Grid.Column="3" Grid.Row="4" FontSize="20" FontWeight="Bold">5</Button>
+        <Button Name="Button6" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_6}" Margin="5" Grid.Column="4" Grid.Row="4" FontSize="20" FontWeight="Bold">6</Button>
+
+        <Button Name="Button7" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_7}" Margin="5" Grid.Column="2" Grid.Row="3" FontSize="20" FontWeight="Bold">7</Button>
+        <Button Name="Button8" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_8}" Margin="5" Grid.Column="3" Grid.Row="3" FontSize="20" FontWeight="Bold">8</Button>
+        <Button Name="Button9" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.NUMBER_9}" Margin="5" Grid.Column="4" Grid.Row="3" FontSize="20" FontWeight="Bold">9</Button>
+
+        <Button Name="ButtonA" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.LETTER_A}" Margin="5" Grid.Column="0" Grid.Row="6" FontSize="20" FontWeight="Bold">A</Button>
+        <Button Name="ButtonB" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.LETTER_B}" Margin="5" Grid.Column="1" Grid.Row="6" FontSize="20" FontWeight="Bold">B</Button>
+
+        <Button Name="ButtonC" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.LETTER_C}" Margin="5" Grid.Column="0" Grid.Row="5" FontSize="20" FontWeight="Bold">C</Button>
+        <Button Name="ButtonD" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.LETTER_D}" Margin="5" Grid.Column="1" Grid.Row="5" FontSize="20" FontWeight="Bold">D</Button>
+
+        <Button Name="ButtonE" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.LETTER_E}" Margin="5" Grid.Column="0" Grid.Row="4" FontSize="20" FontWeight="Bold">E</Button>
+        <Button Name="ButtonF" Command="{Binding DigitButtonPressCommand}" CommandParameter="{x:Static local:DigitButtonType.LETTER_F}" Margin="5" Grid.Column="1" Grid.Row="4" FontSize="20" FontWeight="Bold">F</Button>
+
+        <Button Name="ButtonFactorial" Command="{Binding SingleOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.FACTORIAL}" Background="Darkgray" Margin="5" Grid.Column="5" Grid.Row="1" Foreground="White" FontSize="20" FontWeight="Bold">!</Button>
+        <Button Name="ButtonChangeSign" Command="{Binding SingleOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.CHANGE_SIGN}" Background="Darkgray" Margin="5" Grid.Column="4" Grid.Row="2" Foreground="White" FontSize="20" FontWeight="Bold">+/-</Button>
+        <Button Name="ButtonPosition" Command="{Binding SingleOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.POSITION}" Background="Darkgray" Margin="5" Grid.Column="3" Grid.Row="2" Foreground="White" FontSize="20" FontWeight="Bold">1/x</Button>
+        <Button Name="ButtonInverse" Command="{Binding SingleOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.INVERSE}" Background="Darkgray" Margin="5" Grid.Column="2" Grid.Row="2" Foreground="White" FontSize="20" FontWeight="Bold">~</Button>
+        <Button Name="ButtonRadical" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.RADICAL}" Background="Darkgray" Margin="5" Grid.Column="1" Grid.Row="3" Foreground="White" FontSize="20" FontWeight="Bold">y√x</Button>
+        <Button Name="ButtonExponentiation" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.EXPONENTIATION}" Background="Darkgray" Margin="5" Grid.Column="0" Grid.Row="3" Foreground="White" FontSize="20" FontWeight="Bold">x^y</Button>
+        <Button Name="ButtonDivide" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.DIVISION}" Background="Darkgray" Margin="5" Grid.Column="5" Grid.Row="2" Foreground="White" FontSize="20" FontWeight="Bold">÷</Button>
+        <Button Name="ButtonMultiply" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.MULTIPLICATION}" Background="Darkgray" Margin="5" Grid.Column="5" Grid.Row="3" Foreground="White" FontSize="20" FontWeight="Bold">×</Button>
+        <Button Name="ButtonMinus" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.SUBTRACTION}" Background="Darkgray" Margin="5" Grid.Column="5" Grid.Row="4" Foreground="White" FontSize="20" FontWeight="Bold">-</Button>
+        <Button Name="ButtonPlus" Command="{Binding BinaryOperationButtonPressCommand}" CommandParameter="{x:Static local:OperationButtonType.SUM}" Background="Darkgray" Margin="5" Grid.Column="5" Grid.Row="5" Grid.RowSpan="2" Foreground="White" FontSize="20" FontWeight="Bold">+</Button>
+
+        <Button Name="ButtonClear" Command="{Binding ActionButtonPressCommand}" CommandParameter="{x:Static local:ActionButtonType.CLEAR}" Background="Orange" Margin="5" Grid.Column="4" Grid.Row="1" ToolTip="Clear All" Foreground="White" FontSize="20" FontWeight="Bold">C</Button>
+        <Button Name="ButtonDel" Command="{Binding ActionButtonPressCommand}" CommandParameter="{x:Static local:ActionButtonType.DELETE}" Background="Darkgray" Margin="5" Grid.Column="2" Grid.Row="1" ToolTip="Delete" Grid.ColumnSpan="2" Foreground="White" FontSize="20" FontWeight="Bold">←</Button>
+
+        <TextBox Name="DisplayBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" IsReadOnly="True" Text="{Binding Path=Display, Mode=TwoWay}" Margin="5" FontSize="24" TextAlignment="Right" VerticalContentAlignment="Center" Padding="10"/>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <RadioButton IsChecked="{Binding Path=NumericSystem, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:NumericSystemType.BINARY}}" Content="Binary"/>
+            <RadioButton IsChecked="{Binding Path=NumericSystem, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:NumericSystemType.OCTAL}}" Content="Octal"/>
+            <RadioButton IsChecked="{Binding Path=NumericSystem, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:NumericSystemType.DECIMAL}}" Content="Decimal"/>
+            <RadioButton IsChecked="{Binding Path=NumericSystem, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:NumericSystemType.HEXADECIMAL}}" Content="Hexadecimal"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

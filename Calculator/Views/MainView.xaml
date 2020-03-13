@@ -1,0 +1,19 @@
+﻿<Window x:Class="Calculator.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Calculator.ViewModels"
+    xmlns:views="clr-namespace:Calculator.Views"
+    Title="WPF Calculator"
+    Height="900" MinHeight="600"
+    Width="800" MinWidth="800" ResizeMode="CanMinimize">
+    <Grid>
+        <TabControl Name="mainTabControl">
+            <TabItem Header="Calculator">
+                <views:CalculatorView></views:CalculatorView>
+            </TabItem>
+            <TabItem Header="FunctionPlotter">
+                <views:PlotView></views:PlotView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
